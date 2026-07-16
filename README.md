@@ -119,6 +119,7 @@ Silakan melakukan registrasi melalui halaman Register.
 ![](screenshots/pengaturan_event.png)
 
 ## Author
-
+```
 Kelompok 3 - Manajemen Proyek
+```
 Universitas Nasional
