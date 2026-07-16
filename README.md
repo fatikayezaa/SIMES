@@ -116,7 +116,7 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ### Pengaturan Event
 
-![](screenshots/Pengaturan_Event.png)
+![](screenshots/pengaturan_event.png)
 
 ## Author
 
