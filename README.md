@@ -104,7 +104,7 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ### Budget
 
-![](screenshots/budget.png)
+![](screenshots/anggaran.png)
 
 ### Dokumentasi
 
