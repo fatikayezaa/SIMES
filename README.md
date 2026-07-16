@@ -84,7 +84,41 @@ http://localhost/simes
 
 Silakan melakukan registrasi melalui halaman Register.
 
+## Screenshot
+
+### Beranda
+
+![](screenshots/beranda.png)
+
+### Dashboard Utama
+
+![](screenshots/dashboard.png)
+
+### Dashboard Monitoring
+
+![](screenshots/dashboardmonitoring.png)
+
+### Peserta
+
+![](screenshots/peserta.png)
+
+### Budget
+
+![](screenshots/budget.png)
+
+### Dokumentasi
+
+![](screenshots/dokumentasi.png)
+
+### Laporan
+
+![](screenshots/laporan_Event.png)
+
+### Pengaturan Event
+
+![](screenshots/Pengaturan_Event.png)
+
 ## Author
 
-Fatika Dwi Maiyeza
+Kelompok 3 - Manajemen Proyek
 Universitas Nasional
