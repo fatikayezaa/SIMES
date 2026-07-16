@@ -1,0 +1,477 @@
+/* ==========================
+   RESET
+========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+
+    background:#F5F7FB;
+    overflow:hidden;
+
+}
+
+.container-fluid{
+
+    padding:0;
+
+}
+
+/* ==========================
+   LEFT SIDE
+========================== */
+
+.left-side{
+
+    background:#243C84;
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    position:relative;
+
+    padding:40px;
+
+}
+
+.logo{
+
+    position:absolute;
+
+    top:20px;
+
+    left:40px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.logo img{
+
+    width:100px;
+
+}
+
+.logo span{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+.left-content{
+
+    text-align:center;
+
+    max-width:400px;
+
+}
+
+.illustration{
+
+    width:330px;
+
+    margin-bottom:40px;
+
+}
+
+.left-content h1{
+
+    width:460px;
+
+    margin:25px auto 20px;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    line-height:48px;
+
+    color:#FFFFFF;
+
+    text-align:center;
+
+}
+
+.left-content p{
+
+    width:360px;
+
+    margin:0 auto;
+
+    font-size:16px;
+
+    line-height:30px;
+
+    color:#D8DDF4;
+
+    text-align:center;
+
+}
+
+/* ==========================
+   RIGHT SIDE
+========================== */
+
+.right-side{
+
+    background:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.login-card{
+
+    width:470px;
+
+}
+/* ==========================
+   TITLE
+========================== */
+
+.login-card h2{
+
+    font-size:32px;
+    font-weight:700;
+    color:#1F2937;
+    margin-bottom:8px;
+
+}
+
+.subtitle{
+
+    color:#8B8B8B;
+    font-size:15px;
+    margin-bottom:35px;
+
+}
+
+/* ==========================
+   LABEL
+========================== */
+
+.form-label{
+
+    font-weight:500;
+    color:#374151;
+    margin-bottom:8px;
+
+}
+
+/* ==========================
+   INPUT
+========================== */
+
+.input-group{
+
+    margin-bottom:18px;
+
+}
+
+.input-group-text{
+
+    background:#fff;
+    border:1px solid #D9DDE5;
+    border-right:none;
+    border-radius:12px 0 0 12px;
+    padding:14px 18px;
+    color:#7B7B7B;
+
+}
+
+.form-control{
+
+    border:1px solid #D9DDE5;
+    border-left:none;
+
+    border-radius:0 12px 12px 0;
+
+    height:54px;
+
+    font-size:15px;
+
+    box-shadow:none;
+
+}
+
+.form-control:focus{
+
+    box-shadow:none;
+
+    border-color:#243C84;
+
+}
+
+.form-control::placeholder{
+
+    color:#B6B6B6;
+
+}
+
+/* ==========================
+   REMEMBER
+========================== */
+
+.form-check-label{
+
+    font-size:14px;
+
+    color:#555;
+
+}
+
+.forgot-link{
+
+    text-decoration:none;
+
+    color:#243C84;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+.forgot-link:hover{
+
+    color:#1A2F69;
+
+}
+
+/* ==========================
+   BUTTON LOGIN
+========================== */
+
+.btn-login{
+
+    background:#243C84;
+
+    color:#fff;
+
+    height:54px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn-login:hover{
+
+    background:#1A2F69;
+
+    color:#fff;
+
+}
+/* ==========================
+   DIVIDER
+========================== */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    margin:30px 0;
+
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:#E5E7EB;
+
+}
+
+.divider span{
+
+    padding:0 15px;
+
+    color:#9CA3AF;
+
+    font-size:14px;
+
+}
+
+/* ==========================
+   GOOGLE BUTTON
+========================== */
+
+.btn-google{
+
+    border:1px solid #D9DDE5;
+
+    background:#fff;
+
+    height:54px;
+
+    border-radius:12px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:500;
+
+    color:#374151;
+
+    transition:.3s;
+
+}
+
+.btn-google img{
+
+    width:22px;
+
+}
+
+.btn-google:hover{
+
+    background:#F8F9FB;
+
+}
+
+/* ==========================
+   REGISTER
+========================== */
+
+.register{
+
+    margin-top:28px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    color:#6B7280;
+
+}
+
+.register a{
+
+    color:#243C84;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+}
+
+.register a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================
+   CARD
+========================== */
+
+.login-card{
+
+    background:#fff;
+
+    padding:45px;
+
+    border-radius:20px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+}
+
+/* ==========================
+   BUTTON EFFECT
+========================== */
+
+.btn{
+
+    transition:.25s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width:991px){
+
+    .left-side{
+
+        display:none;
+
+    }
+
+    .right-side{
+
+        width:100%;
+
+        padding:30px;
+
+    }
+
+    .login-card{
+
+        width:100%;
+
+        max-width:430px;
+
+        padding:35px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .login-card{
+
+        padding:25px;
+
+    }
+
+    .login-card h2{
+
+        font-size:26px;
+
+    }
+
+}
