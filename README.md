@@ -88,7 +88,7 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ### Beranda
 
-![](screenshots/beranda.png)
+![](screenshots/Beranda.png)
 
 ### Dashboard Utama
 
