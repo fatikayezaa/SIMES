@@ -107,8 +107,8 @@ $result_sidebar = mysqli_query($conn, $query_sidebar);
                         <h2>Pengaturan Event</h2>
                         <p>Kelola informasi utama dan pengaturan umum event</p>
                     </div>
-                    <!-- Tombol Kembali -->
-                    <a href="dashboard.php?id_event=<?= $id_event ?>" class="btn btn-outline-secondary">
+                    <!-- Tombol Kembali -->                 <!-- Tombol Kembali -->
+                    <a href="../dashboard.php?id_event=<?= $id_event ?>" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Kembali
                     </a>
                 </div>
@@ -206,23 +206,23 @@ $result_sidebar = mysqli_query($conn, $query_sidebar);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-    const inputBanner = document.querySelector('input[name="banner"]');
-    const posterPreview = document.querySelector('.poster-preview');
+        const inputBanner = document.querySelector('input[name="banner"]');
+        const posterPreview = document.querySelector('.poster-preview');
 
-    inputBanner.addEventListener('change', function() {
-        if (this.files && this.files[0]) {
-            const reader = new FileReader();
+        inputBanner.addEventListener('change', function() {
+            if (this.files && this.files[0]) {
+                const reader = new FileReader();
 
-            reader.onload = function(e) {
-               
-                posterPreview.src = e.target.result;
-                posterPreview.style.display = 'block'; 
+                reader.onload = function(e) {
+
+                    posterPreview.src = e.target.result;
+                    posterPreview.style.display = 'block';
+                }
+
+                reader.readAsDataURL(this.files[0]);
             }
-            
-            reader.readAsDataURL(this.files[0]);
-        }
-    });
-</script>
+        });
+    </script>
 
 </body>
 

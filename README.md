@@ -5,10 +5,12 @@ SIMES merupakan aplikasi berbasis web yang dikembangkan menggunakan PHP Native d
 ## Fitur
 
 - Login & Register
-- Dashboard
+- Dashboard Utama
+- Dashboard Monitoring
 - Manajemen Event
 - Manajemen Peserta
 - Import Data Peserta (CSV)
+- Manajemen Anggaran
 - Dokumentasi Event
 - Laporan Event
 
@@ -27,22 +29,30 @@ SIMES merupakan aplikasi berbasis web yang dikembangkan menggunakan PHP Native d
 ```
 simes/
 │
-├── assets/
+├── assets/                 # CSS, JavaScript, gambar, template, dan file upload
 │   ├── css/
 │   ├── img/
-│   └── js/
+│   ├── js/
+│   ├── templates/
+│   └── uploads/
 │
-├── auth/
-├── config/
-├── database/
-├── documentations/
-├── events/
-├── includes/
-├── participants/
-├── reports/
+├── auth/                   # Login & autentikasi
+├── budgets/                # Modul manajemen anggaran
+├── config/                 # Konfigurasi aplikasi
+│   └── database.php
 │
+├── DATABASE/               # File database (.sql)
+├── documentations/         # Dokumentasi kegiatan
+├── events/                 # Modul event
+├── includes/               # Header, footer, sidebar, dll.
+├── participants/           # Modul peserta
+├── reports/                # Modul laporan
+├── screenshots/            # Screenshot aplikasi
+│
+├── .gitignore
 ├── beranda.php
-├── index.php
+├── dashboard.php
+├── dashboardmonitoring.php
 └── README.md
 ```
 
@@ -51,7 +61,7 @@ simes/
 1. Clone repository
 
 ```
-git clone https://github.com/username/simes.git
+git clone https://github.com/fatikayezaa/SIMES.git
 ```
 
 2. Pindahkan folder ke
@@ -77,7 +87,7 @@ config/database.php
 6. Buka
 
 ```
-http://localhost/simes
+http://localhost/simes/beranda.php
 ```
 
 ## Akun
@@ -86,9 +96,17 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ## Screenshot
 
+### Registrasi
+
+![](screenshots/register.png)
+
+### Login
+
+![](screenshots/login.png)
+
 ### Beranda
 
-![](screenshots/Beranda.png)
+![](screenshots/beranda.png)
 
 ### Dashboard Utama
 
@@ -112,14 +130,16 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ### Laporan
 
-![](screenshots/laporan_Event.png)
+![](screenshots/laporan.png)
 
 ### Pengaturan Event
 
-![](screenshots/pengaturan_event.png)
+![](screenshots/pengaturan.png)
 
 ## Author
 ```
-Kelompok 3 - Manajemen Proyek
-```
+KKelompok 3
+Mata Kuliah Manajemen Proyek
 Universitas Nasional
+2026
+```
