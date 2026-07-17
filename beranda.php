@@ -119,7 +119,11 @@ $total_event = mysqli_num_rows($result_event);
                     class="btn <?php echo ($filter === 'selesai') ? 'active' : ''; ?> text-decoration-none d-flex align-items-center justify-content-center">
                     Selesai
                 </a>
+                <a href="events/create.php" class="btn btn-primary">
+                    <i class="bi bi-plus-lg"></i> Buat Event
+                </a>
             </div>
+
 
             <div class="row mt-4">
                 <?php if ($total_event > 0): ?>

@@ -141,9 +141,12 @@ $result_sidebar = mysqli_query($conn, $query_sidebar);
                                 <h6 class="mb-3">Poster Event</h6>
                                 <!-- Pratinjau gambar disembunyikan secara default karena ini event baru -->
                                 <img src="" class="poster-preview mb-3" alt="Poster" style="display: none; width: 100%; border-radius: 10px; object-fit: cover;">
-                                
-                                <label class="upload-box">
-                                    <input type="file" name="banner" accept=".jpg,.jpeg,.png,.webp" required>
+
+                                <label class="upload-box" style="position: relative;">
+                      
+                                    <input type="file" name="banner" accept=".jpg,.jpeg,.png,.webp" required
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+
                                     <i class="bi bi-cloud-arrow-up"></i>
                                     <span>Upload Gambar Baru</span>
                                     <small>PNG, JPG maksimal 2 MB</small>
@@ -187,7 +190,7 @@ $result_sidebar = mysqli_query($conn, $query_sidebar);
                         const reader = new FileReader();
                         reader.onload = function(e) {
                             posterPreview.src = e.target.result;
-                            posterPreview.style.display = 'block'; 
+                            posterPreview.style.display = 'block';
                         }
                         reader.readAsDataURL(this.files[0]);
                     }
