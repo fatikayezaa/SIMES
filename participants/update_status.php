@@ -73,14 +73,8 @@ $query = "UPDATE participants
 $result = mysqli_query($conn, $query);
 
 if ($result) {
-
-    $_SESSION['success'] = "Status kehadiran berhasil diperbarui.";
-
-    header("Location: index.php?id_event=$id_event");
-    exit;
-
+    echo json_encode(['status' => 'success']);
 } else {
-
-    die("Gagal mengubah status peserta: " . mysqli_error($conn));
-
+    echo json_encode(['status' => 'error', 'message' => mysqli_error($conn)]);
 }
+exit;

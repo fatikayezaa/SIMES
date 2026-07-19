@@ -118,7 +118,7 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ### Peserta
 
-![](screenshots/peserta.png)
+![](screenshots/Peserta.png)
 
 ### Budget
 

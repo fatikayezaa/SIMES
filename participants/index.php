@@ -243,7 +243,7 @@ $total_belum = mysqli_num_rows(
                             <strong><?= htmlspecialchars($event['nama_event']); ?></strong>
                         </p>
                     </div>
-                   
+
                     <a href="../dashboard.php?id_event=<?= $id_event; ?>" class="btn btn-outline-secondary">
                         <i class="bi bi-arrow-left"></i> Kembali
                     </a>
@@ -271,12 +271,9 @@ $total_belum = mysqli_num_rows(
 
                                 </span>
 
-                                <h4>
-
+                                <h4 id="total-peserta">
                                     <?= $total_peserta; ?>
-
                                     <small>Orang</small>
-
                                 </h4>
 
                             </div>
@@ -408,6 +405,8 @@ $total_belum = mysqli_num_rows(
 
                                 <th>Email</th>
 
+                                <th>No HP</th>
+
                                 <th>Status Kehadiran</th>
 
                                 <th width="120">Aksi</th>
@@ -434,13 +433,14 @@ $total_belum = mysqli_num_rows(
 
                                         <td><?= htmlspecialchars($row['email']); ?></td>
 
+                                        <td><?= htmlspecialchars($row['no_hp']); ?></td>
+
                                         <td>
                                             <select class="form-select form-select-sm badge-select <?= $row['status_kehadiran'] == 'hadir' ? 'hadir' : 'belum' ?>"
-                                                onchange="window.location.href='update_status.php?id_peserta=<?= $row['id_peserta']; ?>&id_event=<?= $id_event; ?>&status=' + this.value">
+                                                onchange="updateStatusAJAX(<?= $row['id_peserta']; ?>, <?= $id_event; ?>, this)">
 
                                                 <option value="belum hadir" <?= $row['status_kehadiran'] == 'belum hadir' ? 'selected' : ''; ?>>🔴 Belum Hadir</option>
                                                 <option value="hadir" <?= $row['status_kehadiran'] == 'hadir' ? 'selected' : ''; ?>>🟢 Hadir</option>
-
                                             </select>
                                         </td>
                                         <td width="130">
@@ -502,7 +502,7 @@ $total_belum = mysqli_num_rows(
                                 <div class="alert alert-info" style="font-size: 0.85rem;">
                                     <strong>Panduan Format CSV:</strong><br>
                                     Pastikan file CSV memiliki urutan kolom berikut (tanpa judul baris/header):<br>
-                                    <code>Nama Peserta, Instansi, Email</code>
+                                    <code>Nama Peserta, Instansi, Email, No HP</code>
                                     <br><br>
                                     <a href="../assets/templates/template.csv" class="text-decoration-none">
                                         <i class="bi bi-download"></i> Download Template CSV
@@ -529,21 +529,43 @@ $total_belum = mysqli_num_rows(
             <script>
                 function hapusPeserta(idPeserta, idEvent, elemenTombol) {
                     if (confirm('Yakin ingin menghapus peserta ini?')) {
-
-                        // Memanggil delete.php di latar belakang
                         fetch(`delete.php?id_peserta=${idPeserta}&id_event=${idEvent}`)
                             .then(response => response.json())
                             .then(data => {
                                 if (data.status === 'success') {
-
                                     let baris = elemenTombol.closest('tr');
 
-                                    // Efek animasi menghilang (fade out)
+                                    // Ambil status peserta sebelum dihapus untuk update statistik
+                                    let statusPeserta = baris.querySelector('select').value;
+
                                     baris.style.transition = "all 0.5s";
                                     baris.style.opacity = "0";
 
                                     setTimeout(() => {
                                         baris.remove();
+
+                                        // 1. Update Penomoran Otomatis
+                                        let barisTabel = document.querySelectorAll('tbody tr');
+                                        barisTabel.forEach((tr, index) => {
+                                            if (tr.querySelector('td:first-child')) {
+                                                tr.querySelector('td:first-child').innerText = index + 1;
+                                            }
+                                        });
+
+                                        // 2. Update Statistik (Hanya jalan 1 kali)
+                                        let elTotal = document.querySelector('.stat-icon.green + div h4');
+                                        let elHadir = document.querySelector('.stat-icon.purple + div h4');
+                                        let elBelum = document.querySelector('.stat-icon.red + div h4');
+
+                                        // Kurangi Total
+                                        elTotal.innerHTML = (parseInt(elTotal.innerText) - 1) + ' <small>Orang</small>';
+
+                                        // Kurangi Hadir atau Belum Hadir
+                                        if (statusPeserta === 'hadir') {
+                                            elHadir.innerHTML = (parseInt(elHadir.innerText) - 1) + ' <small>Orang</small>';
+                                        } else {
+                                            elBelum.innerHTML = (parseInt(elBelum.innerText) - 1) + ' <small>Orang</small>';
+                                        }
                                     }, 500);
                                 } else {
                                     alert('Gagal menghapus: ' + data.message);
@@ -554,6 +576,39 @@ $total_belum = mysqli_num_rows(
                                 alert('Terjadi kesalahan pada server.');
                             });
                     }
+                }
+
+                function updateStatusAJAX(idPeserta, idEvent, elemenSelect) {
+                    const statusBaru = elemenSelect.value;
+
+                    fetch(`update_status.php?id_peserta=${idPeserta}&id_event=${idEvent}&status=${encodeURIComponent(statusBaru)}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.status === 'success') {
+                                // 1. Ganti warna badge
+                                elemenSelect.className = "form-select form-select-sm badge-select " + (statusBaru === 'hadir' ? 'hadir' : 'belum');
+
+                                // 2. Hitung ulang statistik dari tabel saat ini
+                                let semuaSelect = document.querySelectorAll('.badge-select');
+                                let jumlahHadir = 0;
+                                let jumlahBelum = 0;
+
+                                semuaSelect.forEach(s => {
+                                    if (s.value === 'hadir') jumlahHadir++;
+                                    else jumlahBelum++;
+                                });
+
+                                // 3. Update angka statistik di atas layar
+                                document.querySelector('.stat-icon.purple + div h4').innerHTML = jumlahHadir + ' <small>Orang</small>';
+                                document.querySelector('.stat-icon.red + div h4').innerHTML = jumlahBelum + ' <small>Orang</small>';
+                            } else {
+                                alert('Gagal update: ' + data.message);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            alert('Terjadi kesalahan pada server.');
+                        });
                 }
             </script>
 
