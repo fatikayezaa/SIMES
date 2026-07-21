@@ -138,7 +138,7 @@ Silakan melakukan registrasi melalui halaman Register.
 
 ## Author
 ```
-KKelompok 3
+Kelompok 3
 Mata Kuliah Manajemen Proyek
 Universitas Nasional
 2026
