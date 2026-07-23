@@ -24,7 +24,17 @@ $sisa_anggaran = $total_anggaran - $total_realisasi;
 
 $total_foto = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM documentations WHERE id_event = '$id_event' AND jenis_file='foto'"))['total'];
 $total_video = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total FROM documentations WHERE id_event = '$id_event' AND jenis_file='video'"))['total'];
+
+$dokumentasi = mysqli_query($conn, "
+    SELECT file_path, judul, keterangan
+    FROM documentations
+    WHERE id_event = '$id_event'
+    AND jenis_file = 'foto'
+    ORDER BY id_dokumentasi DESC
+    LIMIT 4
+");
 ?>
+
 <!DOCTYPE html>
 <html lang="id">
 
@@ -82,6 +92,32 @@ $total_video = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total 
                 <div class="content-header">
                     <h2>Laporan Kegiatan</h2>
                     <p>Kelola informasi utama dan laporan hasil kegiatan event</p>
+                </div>
+                <div class="print-header">
+
+                    <h1>LAPORAN KEGIATAN</h1>
+
+
+                    <p>Sistem Informasi Manajemen Event Kampus (SIMES)</p>
+
+                    <hr>
+
+                    <table class="table-print-info">
+
+                        <tr>
+                            <td>Tanggal Cetak</td>
+                            <td>: <?= date('d F Y') ?></td>
+                        </tr>
+
+                        <tr>
+                            <td>Dicetak Oleh</td>
+                            <td>: <?= ucwords(htmlspecialchars($nama)) ?></td>
+                        </tr>
+
+                    </table>
+
+                    <hr>
+
                 </div>
 
                 <div class="event-card">
@@ -198,8 +234,54 @@ $total_video = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) AS total 
                 <div class="note-card">
                     <label class="form-label fw-semibold">Catatan Kegiatan</label>
                     <div class="note-content">
-                        <p style="text-align: justify !important;"><?= htmlspecialchars($report['catatan_kegiatan'] ?? 'Belum ada catatan.') ?></p>
+                        <?php
+                        if ($report && !empty($report['catatan_kegiatan'])) {
+                            echo $report['catatan_kegiatan'];
+                        } else {
+                            echo 'Belum ada catatan.';
+                        }
+                        ?>
                     </div>
+                </div>
+                <div class="note-card documentation-section">
+
+                    <label class="form-label fw-semibold">
+                        Dokumentasi Kegiatan
+                    </label>
+
+                    <div class="row">
+
+                        <?php while ($foto = mysqli_fetch_assoc($dokumentasi)): ?>
+
+                            <div class="col-md-6 mb-4">
+
+                                <div class="documentation-card">
+
+                                    <img
+                                        src="../<?= htmlspecialchars($foto['file_path']) ?>"
+                                        alt="<?= htmlspecialchars($foto['judul']) ?>"
+                                        class="documentation-photo">
+
+                                    <div class="documentation-body">
+
+                                        <h6 class="mt-3 mb-2 fw-bold">
+                                            <?= htmlspecialchars($foto['judul']) ?>
+                                        </h6>
+
+                                        <p class="text-muted mb-0">
+                                            <?= htmlspecialchars($foto['keterangan']) ?>
+                                        </p>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        <?php endwhile; ?>
+
+                    </div>
+
                 </div>
 
                 <div class="action-area mt-4">

@@ -70,7 +70,7 @@ $result_sidebar = mysqli_query($conn, $query_sidebar);
                     <input type="text" placeholder="Cari Event, Pengumuman, atau lainnya..." disabled>
                 </div>
                 <div class="profile">
-                    <!-- Gunakan foto profil default atau dinamis jika ada -->
+                    
                     <img src="../assets/img/profile.jpg" alt="Profile">
                     <span><?= htmlspecialchars($_SESSION['nama']); ?></span>
                 </div>
